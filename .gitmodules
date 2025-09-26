@@ -1,6 +1,7 @@
 [submodule "parlaylib"]
 	path = parlaylib
-	url = https://github.com/cmuparlay/parlaylib.git
+	url = git@github.com:nyu-parcour/parlaylib_mirror.git
+	branch = refactor_vertex_interface
 [submodule "PAM"]
 	path = PAM
 	url = https://github.com/cmuparlay/PAM.git
