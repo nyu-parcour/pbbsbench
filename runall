@@ -87,6 +87,7 @@ parOnly = False
 useNumactl = True
 keep_tmp_files = False
 extended = False
+run_aug = False
 if (sys.argv.count("-only") > 0):
     filteredTests = [l for l in tests if sys.argv.count(l[0]) > 0]
     tests = filteredTests
@@ -123,6 +124,9 @@ if (sys.argv.count("-keep") > 0):
 if (sys.argv.count("-force") > 0):
     print("Forcing Compile")
     forceCompile = True
+if (sys.argv.count("-aug") > 0):
+    print("Running with augmentation")
+    run_aug = True
 if (sys.argv.count("-h") > 0 or sys.argv.count("-help")):
     print("arguments:")
     print(" -force   : forces compile")
@@ -136,6 +140,7 @@ if (sys.argv.count("-h") > 0 or sys.argv.count("-help")):
     print(" -ext     : extended set of benchmars")
     print(" -only <bnchmrk> : only run given benchmark")
     print(" -from <bnchmrk> : only run from given benchmark")
+    print(" -aug     : run with augmentation")
     forceCompile = True
     exit()
 
@@ -181,10 +186,13 @@ def getProcessors() :
 
 def compiletest(sdir) :
     dir = "benchmarks/" + sdir
+    make_flags = ""
+    if run_aug:
+        make_flags = "CXXFLAGS+='-DPARLAY_AUG'"
     if (forceCompile) :
-        ss = "cd " + dir + " ; make -s cleanall ; make -s"
+        ss = "cd " + dir + " ; make -s cleanall ; make -s " + make_flags
     else :
-        ss = "cd " + dir + " ; make -s"
+        ss = "cd " + dir + " ; make -s " + make_flags
     os.system("echo")
     os.system("echo \"" + ss + "\"")
     os.system(ss)
