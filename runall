@@ -188,11 +188,11 @@ def compiletest(sdir) :
     dir = "benchmarks/" + sdir
     make_flags = ""
     if run_aug:
-        make_flags = "CFLAGS+='-DPARLAY_AUG' CXXFLAGS+='-DPARLAY_AUG'"
+        make_flags = "CCFLAGS+=' -DPARLAY_AUG'"
     if (forceCompile) :
-        ss = "cd " + dir + " ; make -s cleanall ; make -s " + make_flags
+        ss = "cd " + dir + " ; make -s cleanall ; make " + make_flags
     else :
-        ss = "cd " + dir + " ; make -s " + make_flags
+        ss = "cd " + dir + " ; make " + make_flags
     os.system("echo")
     os.system("echo \"" + ss + "\"")
     os.system(ss)
