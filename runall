@@ -188,7 +188,7 @@ def compiletest(sdir) :
     dir = "benchmarks/" + sdir
     make_flags = ""
     if run_aug:
-        make_flags = "CFLAGS='$(CFLAGS) -DPARLAY_AUG'"
+        make_flags = "CFLAGS:='$(CFLAGS) -DPARLAY_AUG'"
     if (forceCompile) :
         ss = "cd " + dir + " ; make -s cleanall ; make " + make_flags
     else :
