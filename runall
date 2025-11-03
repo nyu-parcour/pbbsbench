@@ -88,6 +88,7 @@ useNumactl = True
 keep_tmp_files = False
 extended = False
 run_aug = False
+cham_80 = False
 if (sys.argv.count("-only") > 0):
     filteredTests = [l for l in tests if sys.argv.count(l[0]) > 0]
     tests = filteredTests
@@ -127,6 +128,9 @@ if (sys.argv.count("-force") > 0):
 if (sys.argv.count("-aug") > 0):
     print("Running with augmentation")
     run_aug = True
+if (sys.argv.count("-cham80") > 0):
+    print("Running with core counts till 80 (without hyperthreading) on cham server")
+    cham_80 = True
 if (sys.argv.count("-h") > 0 or sys.argv.count("-help")):
     print("arguments:")
     print(" -force   : forces compile")
@@ -141,6 +145,7 @@ if (sys.argv.count("-h") > 0 or sys.argv.count("-help")):
     print(" -only <bnchmrk> : only run given benchmark")
     print(" -from <bnchmrk> : only run from given benchmark")
     print(" -aug     : run with augmentation")
+    print(" -cham80  : run with core counts till 80 (without hyperthreading) on cham server")
     forceCompile = True
     exit()
 
@@ -235,6 +240,11 @@ try :
             if not(noTime) :
                 if (not(isParallel)) :
                     runtest(test, 1, not(noCheck), keep_tmp_files)
+                elif cham_80 :
+                    for p in [1,4,16,32,48,64]:
+                        runtest(test, p, False, True)
+                        os.system("echo")
+                    runtest(test, 80, not(noCheck), keep_tmp_files)
                 elif (not(scale)) :
                     runtest(test, maxcpus, not(noCheck), keep_tmp_files)
                 else :
