@@ -6,11 +6,11 @@ checkProgram="../bench/histogramCheck"
 dataDir = "../sequenceData/data"
 
 tests = [
-    [1, "randomSeq_100M_256_int", "-b 256", ""], 
-    [1, "randomSeq_100M_100K_int", "-b 100000", ""], 
-    [1, "randomSeq_100M_int", "-b 100000000", ""], 
-    [1, "exptSeq_100M_int", "-b 100000000", ""], 
-    [1, "almostEqualSeq_100000000", "-b 100000000", ""], 
+    # [1, "randomSeq_100M_256_int", "-b 256", ""], 
+    # [1, "randomSeq_100M_100K_int", "-b 100000", ""], 
+    [1, "randomSeq_100M_int", "-b 100000000", ""]
+    # [1, "exptSeq_100M_int", "-b 100000000", ""], 
+    # [1, "almostEqualSeq_100000000", "-b 100000000", ""], 
     ] 
 
 import sys

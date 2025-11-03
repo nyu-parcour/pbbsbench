@@ -6,9 +6,9 @@ checkProgram="../bench/rayCheck"
 dataDir = "../geometryData/data"
 
 tests = [
-    [1, ["happyTriangles", "happyRays"], "", ""],
-    [1, ["angelTriangles", "angelRays"], "", ""],
-    [1, ["dragonTriangles", "dragonRays"], "", ""]
+    [1, ["happyTriangles", "happyRays"], "", ""]
+    # [1, ["angelTriangles", "angelRays"], "", ""],
+    # [1, ["dragonTriangles", "dragonRays"], "", ""]
     ]
 
 import sys

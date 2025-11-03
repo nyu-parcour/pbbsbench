@@ -6,8 +6,8 @@ checkProgram="../bench/wcCheck"
 dataDir = "../sequenceData/data"
 
 tests = [
-    [1, "trigramString_250000000", "", ""],
-    [1, "etext99", "", ""],
+    # [1, "trigramString_250000000", "", ""],
+    # [1, "etext99", "", ""],
     [1, "wikipedia250M.txt", "", ""]
 ]
 

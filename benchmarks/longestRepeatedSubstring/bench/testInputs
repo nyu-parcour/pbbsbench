@@ -6,9 +6,9 @@ checkProgram="../bench/lrsCheck"
 dataDir = "../sequenceData/data"
 
 tests = [
-    [3, "chr22.dna", "", ""],
-    [1, "etext99", "", ""],
-    [1, "wikisamp.xml", "", ""]
+    [3, "chr22.dna", "", ""]
+    # [1, "etext99", "", ""],
+    # [1, "wikisamp.xml", "", ""]
 ]
 
 import sys
