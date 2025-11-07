@@ -11,7 +11,9 @@ void time_loop(int rounds, double delay, F initf, G runf, H endf) {
   for (int i=0; i < rounds; i++) {
     initf();
     t.start();
-    runf();
+    auto ret = parlay::augment([&]() {
+      runf();
+    });
     t.next("");
     endf();
   }
