@@ -45,12 +45,12 @@ tests = [
     ["minSpanningForest/parallelFilterKruskal",True,0],
     # ["minSpanningForest/serialMST",False,0],
 
-    ["spanningForest/incrementalST",True,1],
-    # ["spanningForest/ndST",True,0],
+    # ["spanningForest/incrementalST",True,1],
+    ["spanningForest/ndST",True,0],
     # ["spanningForest/serialST",False,0],
 
-    ["breadthFirstSearch/simpleBFS",True,1],
-    # ["breadthFirstSearch/backForwardBFS",True,0],
+    # ["breadthFirstSearch/simpleBFS",True,1],
+    ["breadthFirstSearch/backForwardBFS",True,0],
     # ["breadthFirstSearch/deterministicBFS",True,1],
     # ["breadthFirstSearch/serialBFS",False,0],
 
