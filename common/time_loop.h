@@ -13,12 +13,12 @@ void time_loop(int rounds, double delay, F initf, G runf, H endf) {
   double avg_elapsed_time = 0.0;
   for (int i=0; i < rounds; i++) {
     initf();
-    // t.start();
+    t.start();
     auto ret = parlay::augment([&]() {
       runf();
     });
     avg_elapsed_time += ret.second;
-    // t.next("");
+    t.next("");
     endf();
   }
 
