@@ -30,7 +30,7 @@ void time_loop(int rounds, double delay, F initf, G runf, H endf) {
 
   if (!outfile.is_open()) {
       std::cerr << "Error: Could not open " << filename << std::endl;
-      return 1;
+      exit(1);
   }
   outfile << std::fixed << std::setprecision(2) << avg_elapsed_time << "\n";
 }
