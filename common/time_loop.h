@@ -1,4 +1,5 @@
 #include "../parlay/internal/get_time.h"
+#include "../parlay/parallel.h"
 #include <fstream>
 
 template<class F, class G, class H>
