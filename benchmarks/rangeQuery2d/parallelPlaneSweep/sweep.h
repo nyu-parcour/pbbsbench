@@ -10,9 +10,10 @@ parlay::sequence<Ti> sweep(parlay::sequence<T> &A, // elements to sweep over
 
   size_t n = A.size();
   if (num_blocks == 0) {
-    const size_t factor = 1;
-    const size_t threads = parlay::num_workers();
-    num_blocks = threads*factor;
+    // const size_t factor = 1;
+    // const size_t threads = parlay::num_workers();
+    // num_blocks = threads*factor;
+    num_blocks = 128;
   }
   size_t block_size = ((n-1)/num_blocks);
   auto R = parlay::sequence<Ti>(n+1);
