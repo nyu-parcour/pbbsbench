@@ -34,13 +34,13 @@ struct RangeQuery {
     auto less = [] (point a, point b) {return a.x < b.x;};
     
     parlay::sequence<point> A;
-    auto ret1 = parlay::augment([&]() {
+    // auto ret1 = parlay::augment([&]() {
     A = parlay::sort(points, less);
-    });
+    // });
     
-    auto ret2 = parlay::augment([&]() {
+    // auto ret2 = parlay::augment([&]() {
     xs = parlay::map(A, [] (point p) {return p.x;});
-    });
+    // });
     //auto ys = parlay::map(A, [] (point p) {return p;});
 	parlay::sequence<point> ys = points;
     
@@ -77,12 +77,18 @@ long range(Points const &points, Queries const &queries, bool verbose) {
   t.next("build");
   long total;
   // auto ret1 = parlay::augment([&]() {
-  total = parlay::reduce(parlay::map(queries, [&] (query q) {
-  	          return (long) r.count_in_range(q);}));
+  // total = parlay::reduce(parlay::map(queries, [&] (query q) {
+  // 	          return (long) r.count_in_range(q);}));
   // });
-  /*auto result_s = parlay::map(queries, [&] (query q) {
+
+  parlay::sequence<long> result_s;
+  auto ret1 = parlay::augment([&]() {
+  result_s = parlay::map(queries, [&] (query q) {
   	          return (long) r.count_in_range(q);});
-  long total = parlay::reduce(result_s);*/
+  });
+  auto ret2 = parlay::augment([&]() {
+  long total = parlay::reduce(result_s);
+  });
   t.next("query");
 
 #ifdef CHECK
