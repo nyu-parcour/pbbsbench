@@ -82,13 +82,13 @@ long range(Points const &points, Queries const &queries, bool verbose) {
   // });
 
   parlay::sequence<long> result_s;
-  auto ret1 = parlay::augment([&]() {
+  // auto ret1 = parlay::augment([&]() {
   result_s = parlay::map(queries, [&] (query q) {
   	          return (long) r.count_in_range(q);});
-  });
-  auto ret2 = parlay::augment([&]() {
+  // });
+  // auto ret2 = parlay::augment([&]() {
   long total = parlay::reduce(result_s);
-  });
+  // });
   t.next("query");
 
 #ifdef CHECK
@@ -111,7 +111,9 @@ long range(Points const &points, Queries const &queries, bool verbose) {
   cout << "total_check: " << total_check << endl;
 #endif
 
+  auto ret1 = parlay::augment([&]() {
   r.clear();
+  });
   t.next("clear");
   return total;
 }
