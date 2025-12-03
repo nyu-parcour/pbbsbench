@@ -15,23 +15,23 @@ void time_loop(int rounds, double delay, F initf, G runf, H endf) {
   for (int i=0; i < rounds; i++) {
     initf();
     t.start();
-    auto ret = parlay::augment([&]() {
+    // auto ret = parlay::augment([&]() {
       runf();
-    });
-    avg_elapsed_time += ret.second;
+    // });
+    // avg_elapsed_time += ret.second;
     t.next("");
     endf();
   }
 
-  avg_elapsed_time /= rounds;
+  // avg_elapsed_time /= rounds;
 
-  std::string filename = "avg_timing.txt";
-  std::ofstream outfile;
-  outfile.open(filename, std::ios::app);
+  // std::string filename = "avg_timing.txt";
+  // std::ofstream outfile;
+  // outfile.open(filename, std::ios::app);
 
-  if (!outfile.is_open()) {
-      std::cerr << "Error: Could not open " << filename << std::endl;
-      exit(1);
-  }
-  outfile << std::fixed << std::setprecision(2) << avg_elapsed_time << "\n";
+  // if (!outfile.is_open()) {
+  //     std::cerr << "Error: Could not open " << filename << std::endl;
+  //     exit(1);
+  // }
+  // outfile << std::fixed << std::setprecision(2) << avg_elapsed_time << "\n";
 }
