@@ -19,7 +19,7 @@ parlay::sequence<Ti> sweep(parlay::sequence<T> &A, // elements to sweep over
   auto R = parlay::sequence<Ti>(n+1);
 
   {
-    auto ret1 = parlay::augment([&]() {
+    // auto ret1 = parlay::augment([&]() {
       // generate partial sums for each block
         auto Sums = parlay::tabulate(num_blocks-1, [&] (size_t i) -> Tp {
       size_t l = i * block_size;
@@ -31,13 +31,13 @@ parlay::sequence<Ti> sweep(parlay::sequence<T> &A, // elements to sweep over
       R[0] = Init;
       for (size_t i = 1; i < num_blocks; ++i) 
         R[i*block_size] = h(R[(i-1)*block_size], std::move(Sums[i-1]));
-    });
+    // });
     
 
     
   } // free Sums
   
-  auto ret2 = parlay::augment([&]() {
+  // auto ret2 = parlay::augment([&]() {
   // Fill in final results within each block
   parlay::parallel_for (0, num_blocks, [&] (size_t i) {
     size_t l = i * block_size;
@@ -45,7 +45,7 @@ parlay::sequence<Ti> sweep(parlay::sequence<T> &A, // elements to sweep over
     for (size_t j = l+1; j < r; ++j) 
       R[j] = f(R[j-1], A[j-1]);
     }, 1, true);
-  });
+  // });
 
   return R;
 }
