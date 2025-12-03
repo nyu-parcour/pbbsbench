@@ -75,7 +75,7 @@ long range(Points const &points, Queries const &queries, bool verbose) {
   parlay::internal::timer t("range", verbose);
   RangeQuery r(points);
   t.next("build");
-  long total;
+  // long total;
   // auto ret1 = parlay::augment([&]() {
   // total = parlay::reduce(parlay::map(queries, [&] (query q) {
   // 	          return (long) r.count_in_range(q);}));
