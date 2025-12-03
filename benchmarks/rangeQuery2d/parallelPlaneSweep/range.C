@@ -32,8 +32,10 @@ struct RangeQuery {
 
   RangeQuery(parlay::sequence<point> const &points) {
     auto less = [] (point a, point b) {return a.x < b.x;};
+    
+    parlay::sequence<point> A;
     auto ret1 = parlay::augment([&]() {
-    auto A = parlay::sort(points, less);
+    A = parlay::sort(points, less);
     });
     
     auto ret2 = parlay::augment([&]() {
