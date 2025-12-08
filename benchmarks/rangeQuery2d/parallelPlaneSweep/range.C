@@ -66,8 +66,12 @@ struct RangeQuery {
   }
 
   void clear() {
+    auto ret1 = parlay::augment([&]() {
     ts.clear();
+    });
+    auto ret2 = parlay::augment([&]() {
     coord_set::GC::finish();
+    });
   }
 };
 
@@ -111,9 +115,9 @@ long range(Points const &points, Queries const &queries, bool verbose) {
   cout << "total_check: " << total_check << endl;
 #endif
 
-  auto ret1 = parlay::augment([&]() {
+  // auto ret1 = parlay::augment([&]() {
   r.clear();
-  });
+  // });
   t.next("clear");
   return total;
 }
