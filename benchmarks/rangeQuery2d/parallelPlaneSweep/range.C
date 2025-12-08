@@ -66,12 +66,12 @@ struct RangeQuery {
   }
 
   void clear() {
-    auto ret1 = parlay::augment([&]() {
+    // auto ret1 = parlay::augment([&]() {
     ts.clear();
-    });
-    auto ret2 = parlay::augment([&]() {
+    // });
+    // auto ret2 = parlay::augment([&]() {
     coord_set::GC::finish();
-    });
+    // });
   }
 };
 
