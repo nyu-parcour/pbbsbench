@@ -1,7 +1,7 @@
 [submodule "parlaylib"]
 	path = parlaylib
 	url = git@github.com:nyu-parcour/parlaylib_mirror.git
-	branch = new_join_vertex
+	branch = cham_clearer_fork
 [submodule "PAM"]
 	path = PAM
 	url = https://github.com/cmuparlay/PAM.git
