@@ -15,6 +15,11 @@ parlay::sequence<edgeId> st(edgeArray<vertexId> const &E){
   // initialize to an id out of range
   parlay::sequence<edgeId> hooks(n, (edgeId) m);
 
+  parlay::internal::timer t1;
+  parlay::internal::timer t2;
+
+
+  t1.start();
   parlay::parallel_for (0, m, [&] (edgeId i) {
       vertexId u = E[i].u;
       vertexId v = E[i].v;
@@ -30,10 +35,13 @@ parlay::sequence<edgeId> st(edgeArray<vertexId> const &E){
 	}
       }
     }, 1000);
+  t1.next("Parfor");
 
+  t2.start();
   //get the IDs of the edges in the spanning forest
   parlay::sequence<edgeId> stIdx =  parlay::filter(hooks, [&] (size_t a) {
       return a != m;});
+  t2.next("Parfilter");
   
   std::cout << "nInSt = " << stIdx.size() << std::endl;
   return stIdx;
