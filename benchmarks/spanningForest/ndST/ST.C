@@ -34,7 +34,7 @@ parlay::sequence<edgeId> st(edgeArray<vertexId> const &E){
 	  break;
 	}
       }
-    }, 1000);
+    }, 5000);
   t1.next("Parfor");
 
   t2.start();
